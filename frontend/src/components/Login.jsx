@@ -1,9 +1,11 @@
 import { useState } from "react";
 import api from "../services/api";
+import {useNavigate} from "react-router-dom";
+
 
 function Login() {
   const [isLogin, setIsLogin] = useState(true);
-
+  const navigate = useNavigate();
   const [formdata, setFormdata] = useState({
     username: "",
     password: "",
@@ -64,9 +66,11 @@ function Login() {
           password: formdata.password,
         });
 
-        console.log(response.data);
-
-        alert("Login Successful");
+        console.log("Login Response: ", response.data);
+        if(response.data.success){
+          alert("Login successful");
+          navigate("/home");
+        }
 
       } catch (error) {
         console.error(error);
