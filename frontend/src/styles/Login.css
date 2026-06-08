@@ -1,0 +1,25 @@
+.login-page {
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-box {
+    width: 350px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+body {
+    margin: 0;
+}
