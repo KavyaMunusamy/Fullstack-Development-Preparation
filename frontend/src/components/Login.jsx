@@ -31,7 +31,7 @@ function Login() {
       }
 
       try {
-        const response = await api.post("/auth/register", {
+        const response = await api.post("/register", {
           username: formdata.username,
           password: formdata.password,
           dob: formdata.date_of_birth,
@@ -61,7 +61,7 @@ function Login() {
       // LOGIN
 
       try {
-        const response = await api.post("/auth/login", {
+        const response = await api.post("/login", {
           username: formdata.username,
           password: formdata.password,
         });

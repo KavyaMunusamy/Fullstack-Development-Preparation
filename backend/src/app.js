@@ -1,16 +1,16 @@
-import express from 'express';
-import cors from 'cors';
-import authRoutes from './routes/authRoutes.js';
+import express from "express";
+import cors from "cors";
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req,res) => {
-    res.json({
-        message: "Hello All!!!"
-    });
+app.use("/api", authRoutes);
+
+app.listen(5000, () => {
+  console.log("Server is running on port 5000");
 });
 
-app.use('/api/auth', authRoutes);
 export default app;

@@ -33,14 +33,17 @@ export const login = async (req, res) => {
     });
   });
 };
+
+// REGISTER
 export const register = async (req, res) => {
   const { username, password, dob } = req.body;
+
   const checkQuery = `
     SELECT * FROM Users
     WHERE username = ?
   `;
 
-  db.query(checkQuery, [username], (checkErr, checkResult) => {
+  db.query(checkQuery, [user_name], (checkErr, checkResult) => {
     if (checkErr) {
       console.log(checkErr);
 
@@ -58,7 +61,7 @@ export const register = async (req, res) => {
     }
 
     const insertQuery = `
-      INSERT INTO Users(username, password, dob)
+      INSERT INTO Users (username, password, dob)
       VALUES (?, ?, ?)
     `;
 
@@ -83,4 +86,36 @@ export const register = async (req, res) => {
       }
     );
   });
+};
+
+// BOOK TICKET
+export const bookTicket = async (req, res) => {
+  const { eventId, title, date, venue, user_name } = req.body;
+
+  const insertQuery = `
+  INSERT INTO bookings
+  (event_id, event_title, event_date, event_venue, user_name)
+  VALUES (?, ?, ?, ?, ?)
+`;
+
+  db.query(
+    insertQuery,
+    [eventId, title, date, venue, user_name],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+
+        return res.status(500).json({
+          success: false,
+          message: "Ticket booking failed",
+        });
+      }
+
+      return res.status(201).json({
+        success: true,
+        message: "Ticket booked successfully",
+        bookingId: result.insertId,
+      });
+    }
+  );
 };
