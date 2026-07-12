@@ -1,12 +1,12 @@
 import {useState} from "react";
 
-function Toggle() {
+function Toggle({message}) {
     const [show,setShow] = useState(false);
     return(
         <div>
             <h2> Toggle button </h2>
             <button onClick={() => setShow(!show)}> {show ? "Hide" : "Show"} </button>
-            {show && <p> Hello React </p>}
+            {show && <p> {message} </p>}
         </div>
     );
 }

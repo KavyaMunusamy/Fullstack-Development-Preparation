@@ -4,7 +4,7 @@ function App() {
     return (
         <div>
             <h2> Show / Hide Components </h2>
-            <Toggle/>
+            <Toggle message="Hello Kavya!!!" />
         </div>
     );
 }
